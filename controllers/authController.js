@@ -22,7 +22,7 @@ export const registerUser = async (req, res) => {
 
     // Return success response with user details and token
     res.status(201).json({
-      message: 'User registered successfully, Please login', 
+      message: 'User registered successfully, Please login',
       _id: user._id,
       name: user.name,
       email: user.email,
@@ -31,9 +31,10 @@ export const registerUser = async (req, res) => {
     });
   } catch (error) {
     console.error('Error registering the user!', error.message);
-    res.status(500).json({ message: 'Error registering the user', success: false, error });
+    res.status(500).json({ message: 'Error registering the user', success: false, error: error.message });
   }
 };
+
 
 // Controller to handle user login
 export const loginUser = async (req, res) => {
