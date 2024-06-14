@@ -10,6 +10,7 @@ import  {
 } from '../controllers/blogPostController.js';
 
 
+
 router.post('/', createBlogPost);
 router.get('/', getBlogPosts);
 router.get('/:id', getBlogByPostId);

@@ -3,6 +3,7 @@ import User from '../model/User.js';
 import generateToken from '../utils/generateToken.js';
 import bcrypt from 'bcryptjs'
 
+
 export const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -65,3 +66,18 @@ export const loginUser = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
+
+
+// Logout User with Token Blacklist
+export const Logout = (req, res) => {
+  try {
+    res.clearCookie('token'); 
+    res.status(200).json({ message: 'Logged out successfully' });
+  } catch (error) {
+    console.error('Error during logout:', error.message);
+    res.status(500).json({ message: 'Server error during logout', error: error.message });
+  }
+};
+
+

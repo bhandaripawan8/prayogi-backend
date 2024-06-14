@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import  connectDB  from './config/db.js';
 import authRoutes from './routes/authRoutes.js'
 import blogPostRoutes from './routes/blogPostRoutes.js'
-
+import yogaClassesRoutes from './routes/yogaClassesRoutes.js'
 
 dotenv.config();
 
@@ -19,6 +19,7 @@ connectDB();
 // routes, API's
 app.use('/api/auth', authRoutes);
 app.use('/api/blogposts', blogPostRoutes);
+app.use('/api/yoga-classes', yogaClassesRoutes);
 
 const PORT = process.env.PORT || 5000;
 
