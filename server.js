@@ -1,26 +1,23 @@
-import express from 'express';
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
-import dotenv from 'dotenv';
-import  connectDB  from './config/db.js';
-import authRoutes from './routes/authRoutes.js'
-import blogPostRoutes from './routes/blogPostRoutes.js'
-import yogaClassesRoutes from './routes/yogaClassesRoutes.js'
 
-dotenv.config();
 
-const app = express();
-app.use(express.json());
-app.use(cors());
-app.use(cookieParser());
+import app from './app.js'
+import {v2 as cloudinary} from 'cloudinary';
+          
+const cloudinaryConnection = () => {
+    try {
+        cloudinary.config({ 
+            cloud_name: process.env.CLOUDINARY_NAME, 
+            api_key: process.env.CLOUDINARY_KEY, 
+            api_secret: process.env.CLOUDINARY_API 
+          })
+          console.log('Cloudinary connected')
+       } catch (error) {
+        console.error('Error connecting to cloudinary', error)
+       }
+}
 
-connectDB();
+cloudinaryConnection();
 
-// routes, API's
-app.use('/api/auth', authRoutes);
-app.use('/api/blogposts', blogPostRoutes);
-app.use('/api/yoga-classes', yogaClassesRoutes);
-
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(process.env.PORT, () =>{
+    console.log(`server running on port ${process.env.PORT}`);
+})
