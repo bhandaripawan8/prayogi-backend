@@ -9,6 +9,7 @@ import blogPostRoutes from './routes/blogPostRoutes.js'
 import yogaClassesRoutes from './routes/yogaClassesRoutes.js'
 import bodyParser from 'body-parser';
 import bookingRoutes from './routes/bookingRoutes.js'
+import allUserRoutes from './routes/allUsersRoutes.js'
 
 dotenv.config();
 
@@ -28,5 +29,6 @@ app.use('/api/auth', authRoutes);
 app.use('/api/blogposts', blogPostRoutes);
 app.use('/api/yoga-classes', yogaClassesRoutes);
 app.use('/api/bookings', bookingRoutes)
+app.use('/api/all', allUserRoutes)
 
 export default app;

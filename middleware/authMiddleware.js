@@ -4,7 +4,6 @@ import User from '../model/User.js';
 
 const authMiddleware = async (req, res, next) => {
   const token = req.header('Authorization')?.replace('Bearer ', '');
-  console.log(token)
   if (!token) {
     return res.status(401).json({ message: 'Please login first', success: false });
   }
